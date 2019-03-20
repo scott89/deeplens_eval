@@ -1,0 +1,27 @@
+syntax = "proto2";
+
+
+message EvalConfig {
+    optional int32 batch_size = 3 [default = 16];
+    required string image_path = 9;
+    optional string ete_ckpt = 11;
+    required string log_path = 12;
+    optional string info = 13;
+    repeated int32 gpu_ids = 14;
+    optional bool use_moving_average = 15 [default = true];
+    optional float moving_average_decay = 16 [default = 0.9];
+    optional int32 input_size = 17 [default = 320];
+
+    required string depth_path = 20;
+    required string res_path = 21;
+    required string meta_path = 22;
+
+    optional int32 aperture_radius = 23 [default = 16]; // Aperture radius for rendering, can be set on the fly
+    optional int32 max_aperture_radius = 24 [default = 16]; // The max aperture radius
+    optional int32 kernel_radius = 25 [default = 8]; // The kernel radius of prediction, should be upsampled to max_kernel_radius before clipping and rendering
+    optional int32 max_kernel_radius = 26 [default = 8]; // The max kernel radius of groundtruth
+
+    optional string depth_ckpt = 30;
+    optional string lensblur_ckpt = 31;
+    optional string sr_ckpt = 32;
+}
