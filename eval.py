@@ -2,15 +2,7 @@ import tensorflow as tf
 
 from google.protobuf import text_format
 from proto.eval_config_pb2 import EvalConfig
-#from core import evaluator_batch_with_placeholder as evaluator
-#from core import evaluator_with_depth as evaluator
-#from core import evaluator_interactive as evaluator
-from core import evaluator as evaluator
-#from core import evaluator_with_depth as evaluator
-#from core import evaluator_image as evaluator
-#from core import evaluator_raytracing as evaluator
-#from core import evaluator_composite as evaluator
-#from core import evaluator_bicubic as evaluator
+from core import evaluator_interactive as evaluator
 import os
 tf.logging.set_verbosity(tf.logging.INFO)
 
@@ -18,7 +10,7 @@ flags = tf.app.flags
 flags.DEFINE_string('config_file', './model/eval.config',
                     'Path of config file')
 
-flags.DEFINE_integer('id', 3,
+flags.DEFINE_integer('id', 0,
                     'Path of config file')
 FLAGS = flags.FLAGS
 

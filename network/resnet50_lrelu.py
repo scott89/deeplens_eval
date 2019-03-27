@@ -165,7 +165,7 @@ class ResNet50(Network):
                    'bn4f_branch2c')
              .add(name='res4f')
              .relu(name='res4f_relu'))
-        (self.conv(1, 1, 128, 1, 1, 1, biased=False, relu=False, name='spp_conv1')
+        (self.conv(1, 1, 256, 1, 1, 1, biased=False, relu=False, name='spp_conv1')
              .batch_normalization(lrelu=True, name='spp_bn1'))
         (self.avg_pool(40, 40, 40, 40, name='spp_pool_a')
              .conv(1, 1, 32, 1, 1, 1, biased=False, relu=False, name='spp_conv_a')
