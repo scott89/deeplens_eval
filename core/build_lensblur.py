@@ -1,5 +1,5 @@
 import tensorflow as tf
-from network.raytracnet_deepcut import RayTraceNet
+from network.kernel_net import KernelNet
 from network.feature_net import FeaNet
 import numpy as np
 
@@ -21,7 +21,7 @@ def _render_dof_batch(image_tensor, kernel_tensor, sigma=0.4):
 def build(im320_tensor, depth320_tensor, is_training):
     with tf.variable_scope('Network'):
         with tf.variable_scope('Lensblur'):
-            lens_net = RayTraceNet({'image': im320_tensor-0.5, 'depth': depth320_tensor}, is_training)
+            lens_net = KernelNet({'image': im320_tensor-0.5, 'depth': depth320_tensor}, is_training)
             kernel = lens_net.get_output()
         with tf.variable_scope('Feature'):
             fea_net = FeaNet({'image': im320_tensor}, is_training)
