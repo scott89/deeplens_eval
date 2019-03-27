@@ -1,5 +1,5 @@
 import tensorflow as tf
-
+from network.network import Network
 from google.protobuf import text_format
 from proto.eval_config_pb2 import EvalConfig
 #from core import evaluator_batch_with_placeholder as evaluator
