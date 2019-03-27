@@ -99,7 +99,7 @@ def evaluate(eval_config):
     im_handle = plt.imshow(im.im[:,:,-1::-1])
     plt.figure(2, figsize=[5, 1])
     ax_aperture = plt.axes([0.25, 0.5, 0.65, 0.3], facecolor='lightgoldenrodyellow')
-    slider = Slider(ax_aperture, 'Aperture Radius', 0.0, 10.0, valinit=8.0)
+    slider = Slider(ax_aperture, 'Aperture Radius', 0.0, 10.0, valinit=5.0)
     im.aperture = slider.val/10.0
     plt.figure(3)
     depth_handle = plt.imshow(pre_depth[0,:,:,0])
@@ -112,6 +112,10 @@ def _normalize(x):
 
 class ImageWrapper(object):
     def __init__(self, im, depth=None, dof=None, x=0, y=0, aperture=1.0):
+        if np.max(im.shape) > 1280:
+            scale = 1280.0 / np.max(im.shape)
+            shape =  np.int32(np.array(im.shape) * scale)
+            im = cv2.resize(im, (shape[1], shape[0]), interpolation=cv2.INTER_AREA)
         self.im = im
         if np.max(im.shape) > 1280:
             self.scale = 4
@@ -119,7 +123,7 @@ class ImageWrapper(object):
             #self.im_1280 = cv2.resize(self.im, (self.im.shape[1]/2, self.im.shape[0]/2), interpolation=cv2.INTER_AREA)
             self.im_640 = cv2.resize(self.im_1280, (self.im_1280.shape[1]/2, self.im_1280.shape[0]/2), interpolation=cv2.INTER_AREA)
             self.im_320 = cv2.resize(self.im_640, (self.im_640.shape[1]/2, self.im_640.shape[0]/2), interpolation=cv2.INTER_AREA)
-        elif np.max(im.shape) >640:
+        elif np.max(im.shape) > 640:
             self.scale = 2
             self.im_1280 = None
             self.im_640 = im
@@ -207,7 +211,6 @@ class RenderDoF(object):
             print self.im_names[self.id]
         except:
             start_id = self.id
-            np.save('checkpoint.npy', [start_id])
             exit()
 
         pre_depth = self.run_depth_func(im.im_320)
