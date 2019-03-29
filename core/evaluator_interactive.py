@@ -106,8 +106,8 @@ def evaluate(eval_config):
     plt.figure(3)
     depth_handle = plt.imshow(pre_depth[0,:,:,0])
     renderdof = RenderDoF(im_handle, depth_handle, slider, im, run_dof_func, run_depth_func, start_id, image_names)
-    #plt.show()
-    plt.savefig('output.jpg')
+    plt.show()
+    #plt.savefig('output.jpg')
 
 def _normalize(x):
     x = x.astype(np.float32)
