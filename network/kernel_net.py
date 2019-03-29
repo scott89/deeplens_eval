@@ -1,4 +1,4 @@
-from network import Network
+from network.network import Network
 import tensorflow as tf
 
 class KernelNet(Network):
@@ -64,7 +64,7 @@ class KernelNet(Network):
         self.resize(shape=tf.shape(self.layers['image'])[1:3], name='upsample')
 
         #concat
-        (self.feed('upsample', 
+        (self.feed('upsample',
                    'bn1_shallow')
          .concat(3, name='concat'))
 

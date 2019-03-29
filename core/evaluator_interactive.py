@@ -1,4 +1,6 @@
 import tensorflow as tf
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
 import numpy as np
@@ -38,15 +40,15 @@ def construct_graph(eval_config):
         depth_320, depth_net = build_depth_resnet.build(image_320_tensor, is_training)
         focal_depth = depth_320[0, focal_y_tensor, focal_x_tensor, 0]
         depth_320_signed = (depth_320 - focal_depth) * aperture_tensor
-        pre_dof_320, lensblur_net, feature_net = build_lensblur.build(image_320_tensor, depth_320_signed, is_training) 
+        pre_dof_320, lensblur_net, feature_net = build_lensblur.build(image_320_tensor, depth_320_signed, is_training)
         pre_dof_640, sr_net = build_sr.build(image_320_tensor, depth_320_signed, pre_dof_320, image_640_tensor, is_training)
         shape_640 = tf.shape(pre_dof_640)
         depth_640_signed = tf.image.resize_bilinear(depth_320_signed, [shape_640[1], shape_640[2]])
-        pre_dof_1280, sr_net = build_sr.build(image_640_tensor, depth_640_signed, pre_dof_640, image_1280_tensor, is_training) 
+        pre_dof_1280, sr_net = build_sr.build(image_640_tensor, depth_640_signed, pre_dof_640, image_1280_tensor, is_training)
 
 
     variables_to_restore = tf.global_variables()
-    
+
     session_config = tf.ConfigProto()
     session_config.gpu_options.per_process_gpu_memory_fraction = 0.8
     sess = tf.Session(config=session_config)
@@ -65,7 +67,7 @@ def construct_graph(eval_config):
     else:
         raise ValueError("No pre-trained models")
 
-    
+
     def pre_dof(im):
         focal_x, focal_y = im.get_focal_point()
         aperture = im.aperture
@@ -104,7 +106,8 @@ def evaluate(eval_config):
     plt.figure(3)
     depth_handle = plt.imshow(pre_depth[0,:,:,0])
     renderdof = RenderDoF(im_handle, depth_handle, slider, im, run_dof_func, run_depth_func, start_id, image_names)
-    plt.show()
+    #plt.show()
+    plt.savefig('output.jpg')
 
 def _normalize(x):
     x = x.astype(np.float32)
@@ -121,13 +124,13 @@ class ImageWrapper(object):
             self.scale = 4
             self.im_1280 = im
             #self.im_1280 = cv2.resize(self.im, (self.im.shape[1]/2, self.im.shape[0]/2), interpolation=cv2.INTER_AREA)
-            self.im_640 = cv2.resize(self.im_1280, (self.im_1280.shape[1]/2, self.im_1280.shape[0]/2), interpolation=cv2.INTER_AREA)
-            self.im_320 = cv2.resize(self.im_640, (self.im_640.shape[1]/2, self.im_640.shape[0]/2), interpolation=cv2.INTER_AREA)
+            self.im_640 = cv2.resize(self.im_1280, (int(self.im_1280.shape[1]/2), int(self.im_1280.shape[0]/2)), interpolation=cv2.INTER_AREA)
+            self.im_320 = cv2.resize(self.im_640, (int(self.im_640.shape[1]/2),int(self.im_640.shape[0]/2)), interpolation=cv2.INTER_AREA)
         elif np.max(im.shape) > 640:
             self.scale = 2
             self.im_1280 = None
             self.im_640 = im
-            self.im_320 = cv2.resize(self.im_640, (self.im_640.shape[1]/2, self.im_640.shape[0]/2), interpolation=cv2.INTER_AREA)
+            self.im_320 = cv2.resize(self.im_640, (int(self.im_640.shape[1]/2), int(self.im_640.shape[0]/2)), interpolation=cv2.INTER_AREA)
         else:
             self.scale = 1
             self.im_1280 = None
@@ -208,7 +211,7 @@ class RenderDoF(object):
             im = im.astype(np.float32) / 255
             im = ImageWrapper(im, aperture=self.slider.val/10.0)
             self.im = im
-            print self.im_names[self.id]
+            print(self.im_names[self.id])
         except:
             start_id = self.id
             exit()

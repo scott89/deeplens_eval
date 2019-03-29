@@ -1,4 +1,4 @@
-from network import Network
+from network.network import Network
 import tensorflow as tf
 
 class SRNet(Network):

@@ -84,7 +84,7 @@ class Network(object):
         assert len(args) != 0
         self.terminals = []
         for fed_layer in args:
-            if isinstance(fed_layer, basestring):
+            if isinstance(fed_layer, str):
                 try:
                     fed_layer = self.layers[fed_layer]
                 except KeyError:
@@ -102,7 +102,7 @@ class Network(object):
         '''
         ident = sum(t.startswith(prefix) for t, _ in self.layers.items()) + 1
         return '%s_%d' % (prefix, ident)
-    
+
     def make_var(self, name, shape, weight_decay=0, trainable=None, initializer=None):
         '''Creates a new TensorFlow variable.'''
         if trainable == None:
@@ -139,7 +139,7 @@ class Network(object):
         # Verify that the padding is acceptable
         self.validate_padding(padding)
         # Get the number of channels in the input
-        c_i = input.get_shape()[-1]
+        c_i = input.get_shape().as_list()[-1]
         # Verify that the grouping parameter is valid
         assert c_i % group == 0
         assert c_o % group == 0
@@ -191,7 +191,7 @@ class Network(object):
         # Convolution for a given input and kernel
         if dilation_rate > 1:
             assert s_h == 1 and s_w == 1
-        separable_convolve = lambda i, k_depth, k_point: tf.nn.separable_conv2d(i, k_depth, k_point, strides=[1, s_h, s_w, 1], 
+        separable_convolve = lambda i, k_depth, k_point: tf.nn.separable_conv2d(i, k_depth, k_point, strides=[1, s_h, s_w, 1],
                 rate=[dilation_rate, dilation_rate], padding=padding, name=name)
         with tf.variable_scope(name) as scope:
             #kernel = self.make_var('weights', shape=[k_h, k_w, c_i / group, c_o])
@@ -302,7 +302,7 @@ class Network(object):
     @layer
     def fc(self, input, num_out, name, relu=True):
         with tf.variable_scope(name) as scope:
-            input_shape = input.get_shape()
+            input_shape = input.get_shape().as_list()
             if input_shape.ndims == 4:
                 # The input is spatial. Vectorize it first.
                 dim = 1

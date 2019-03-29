@@ -1,4 +1,4 @@
-from network import Network
+from network.network import Network
 
 class FeaNet(Network):
     def __init__(self, input, is_training, trainable=True, bn_global=None, upsample_size=640):
