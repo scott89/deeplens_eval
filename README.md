@@ -2,7 +2,7 @@
 
 ### Introduction
 This repo contains interactive evaluation code for our [SIGGRAPH Asia 2018 paper](https://arxiv.org/abs/1810.08100). 
-More details can be found in our project webpage [English](https://scott89.github.io/deeplens/DeepLens.html) or [中文](https://scott89.github.io/DeepLens_zh/DeepLens.html):.
+More details can be found in our project webpage [English](https://scott89.github.io/deeplens/DeepLens.html) or [中文](https://scott89.github.io/DeepLens_zh/DeepLens.html).
 
 ### Usage
 
@@ -18,7 +18,7 @@ More details can be found in our project webpage [English](https://scott89.githu
 
 ### Citing Our Work
 
-If you find FCNT useful in your research, please consider to cite our paper:
+If you find DeepLens useful in your research, please consider to cite our paper:
 
  @ARTICLE{deeplens2018, 
 author={Wang Lijun and Shen Xiaohui and Zhang Jianming and Wang Oliver and Hsieh Chih-Yao and Kong Sarah and Lu Huchuan}, 
