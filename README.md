@@ -13,10 +13,14 @@ More details can be found in our project webpage [English](https://scott89.githu
  * Cuda enabled GPUs
 
 * How to run: 
- 1. Download pretrained models from [here](http://pan.dlut.edu.cn/share?id=tuvjqqshhgyu) and place in 'model/'.
- 2. Run python eval.py.
+ 1. Download pretrained models from [here](http://pan.dlut.edu.cn/share?id=tuvjqqshhgyu) and place checkpoint files in 'model/'.
+ 2. Run `python eval.py`, the input image and the corresponding depth maps will be displayed.
+ 3. Select the focal point by clicking on the image and slide the slider to adjust aperture radius. Shallow depth of field effects will be rendered automatically.
+
+    fad
 
 ### Citing Our Work
+
 
 If you find DeepLens useful in your research, please consider to cite our paper:
 
