@@ -17,8 +17,6 @@ More details can be found in our project webpage [English](https://scott89.githu
  2. Run `python eval.py`, the input image and the corresponding depth maps will be displayed.
  3. Select the focal point by clicking on the image and slide the slider to adjust aperture radius. Shallow depth of field effects will be rendered automatically.
 
-    fad
-
 ### Citing Our Work
 
 
