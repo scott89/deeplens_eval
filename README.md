@@ -20,12 +20,12 @@ More details can be found in our project webpage [English](https://scott89.githu
 
 If you find DeepLens useful in your research, please consider to cite our paper:
 
- @ARTICLE{deeplens2018, 
-author={Wang Lijun and Shen Xiaohui and Zhang Jianming and Wang Oliver and Hsieh Chih-Yao and Kong Sarah and Lu Huchuan}, 
-title={DeepLens: Shallow Depth of Field from a Single Image}, 
-journal={ACM Trans. Graph. (Proc. SIGGRAPH Asia)}, 
-year={2018}, 
-pages = {6:1-6:11}, 
-volume = {37}, 
-number = {6} 
-}
+    @ARTICLE{deeplens2018, 
+    author={Wang Lijun and Shen Xiaohui and Zhang Jianming and Wang Oliver and Lin Zhe and Hsieh Chih-Yao and Kong Sarah and Lu Huchuan}, 
+    title={DeepLens: Shallow Depth of Field from a Single Image}, 
+    journal={ACM Trans. Graph. (Proc. SIGGRAPH Asia)}, 
+    year={2018}, 
+    pages = {6:1-6:11}, 
+    volume = {37}, 
+    number = {6} 
+    }
