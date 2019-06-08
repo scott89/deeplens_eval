@@ -117,13 +117,13 @@ class ImageWrapper(object):
             shape =  np.int32(np.array(im.shape) * scale)
             im = cv2.resize(im, (shape[1], shape[0]), interpolation=cv2.INTER_AREA)
         self.im = im
-        if np.max(im.shape) > 1280:
+        if np.max(im.shape) >= 1280:
             self.scale = 4
             self.im_1280 = im
             #self.im_1280 = cv2.resize(self.im, (self.im.shape[1]/2, self.im.shape[0]/2), interpolation=cv2.INTER_AREA)
             self.im_640 = cv2.resize(self.im_1280, (self.im_1280.shape[1]/2, self.im_1280.shape[0]/2), interpolation=cv2.INTER_AREA)
             self.im_320 = cv2.resize(self.im_640, (self.im_640.shape[1]/2, self.im_640.shape[0]/2), interpolation=cv2.INTER_AREA)
-        elif np.max(im.shape) > 640:
+        elif np.max(im.shape) >= 640:
             self.scale = 2
             self.im_1280 = None
             self.im_640 = im

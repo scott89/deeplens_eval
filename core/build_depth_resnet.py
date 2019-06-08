@@ -18,5 +18,5 @@ def build(im320_tensor, is_training):
     pre = net.get_output()
     pre = tf.image.resize_bilinear(pre, [origin_size[1], origin_size[2]])
     pre = normalize(pre) 
-    pre = 1 - pre
+    #pre = 1 - pre
     return pre, net
