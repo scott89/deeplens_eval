@@ -1,6 +1,6 @@
 ## DeepLens: Shallow Depth-of-Field from a Single Image
 
-### Important Update:
+### Important Update (June 8th 2019):
 A fatal bug is fixed by replacing the input depth to the lensblur network with the inverse depth. Otherwise, the rendered DoF image will
 suffer from boundary artifacts.
  
