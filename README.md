@@ -1,5 +1,9 @@
 ## DeepLens: Shallow Depth-of-Field from a Single Image
 
+### Important Update:
+An fatal bug is fixed by replacing the input depth to the lensblur network with the inverse depth. Otherwise, the rendered DoF image will
+suffer from boundary artifacts.
+ 
 ### Introduction
 This repo contains interactive evaluation code for our [SIGGRAPH Asia 2018 paper](https://arxiv.org/abs/1810.08100). 
 More details can be found in our project webpage [English](https://scott89.github.io/deeplens/DeepLens.html) or [中文](https://scott89.github.io/DeepLens_zh/DeepLens.html).
