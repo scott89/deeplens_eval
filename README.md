@@ -1,7 +1,7 @@
 ## DeepLens: Shallow Depth-of-Field from a Single Image
 
 ### Important Update:
-An fatal bug is fixed by replacing the input depth to the lensblur network with the inverse depth. Otherwise, the rendered DoF image will
+A fatal bug is fixed by replacing the input depth to the lensblur network with the inverse depth. Otherwise, the rendered DoF image will
 suffer from boundary artifacts.
  
 ### Introduction
@@ -17,9 +17,8 @@ More details can be found in our project webpage [English](https://scott89.githu
  * Cuda enabled GPUs
 
 * How to run: 
- 1. Download pretrained models from [here](http://pan.dlut.edu.cn/share?id=tuvjqqshhgyu) and place checkpoint files in 'model/'.
- 2. Run `python eval.py`, the input image and the corresponding depth maps will be displayed.
- 3. Select the focal point by clicking on the image and slide the slider to adjust aperture radius. Shallow depth of field effects will be rendered automatically.
+ 1. Run `python eval.py`, the input image and the corresponding depth maps will be displayed.
+ 2. Select the focal point by clicking on the image and slide the slider to adjust aperture radius. Shallow depth of field effects will be rendered automatically.
 
 ### Citing Our Work
 
